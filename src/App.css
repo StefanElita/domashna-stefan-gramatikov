@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+  --bg-dark: #121212;
+  --text-light: #f5f5f5;
+  --panel-bg: rgba(255, 255, 255, 0.05);
+  --border-radius: 12px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  overflow-x: hidden;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header */
+.app-header {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
+}
+
+.app-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.05em;
+  background: linear-gradient(90deg, #fff, #aaa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.app-header p {
+  color: #888;
+  font-size: 1.1rem;
+}
+
+/* Main Palette Area */
+.palette-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .palette-container {
+    flex-direction: row;
+  }
+}
+
+/* Color Box */
+.color-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  transition: flex 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  min-height: 20vh;
+}
+
+@media (min-width: 768px) {
+  .color-box:hover {
+    flex: 1.2;
+  }
+}
+
+.color-info {
+  text-align: center;
+  z-index: 10;
+  transition: transform 0.2s ease;
+}
+
+.color-box:hover .color-info {
+  transform: translateY(-5px);
+}
+
+.hex-value {
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.rgb-value {
+  font-size: 1rem;
+  opacity: 0.8;
+  font-weight: 600;
+}
+
+.color-actions {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.color-box:hover .color-actions {
+  opacity: 1;
+}
+
+.copy-hint, .copied-message {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.4);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: 600;
+  backdrop-filter: blur(5px);
+}
+
+.copied-message {
+  background: rgba(46, 204, 113, 0.8);
+}
+
+.lock-button {
+  position: absolute;
+  bottom: 2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: all 0.2s ease;
+  z-index: 20;
+}
+
+.lock-button:hover {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+.color-box:hover .lock-button {
+  opacity: 1;
+}
+
+/* Animations */
+@keyframes copiedPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.98); }
+  100% { transform: scale(1); }
+}
+
+.copied-animation {
+  animation: copiedPulse 0.3s ease;
+}
+
+/* Footer Controls */
+.app-controls {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+}
+
+button {
+  font-family: 'Inter', sans-serif;
+}
+
+.primary-button, .secondary-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.primary-button {
+  background-color: #ffffff;
+  color: #121212;
+  box-shadow: 0 4px 15px rgba(255,255,255,0.2);
+}
+
+.primary-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255,255,255,0.3);
+}
+
+.primary-button:active {
+  transform: translateY(0);
+}
+
+.secondary-button {
+  background-color: var(--panel-bg);
+  color: var(--text-light);
+  border: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+}
+
+.secondary-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
